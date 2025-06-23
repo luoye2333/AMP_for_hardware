@@ -17,7 +17,7 @@ class ObservationBuffer:
 
     def insert(self, new_obs):
         # Shift observations back.
-        self.obs_buf[:, : self.num_obs * (self.include_history_steps - 1)] = self.obs_buf[:,self.num_obs : self.num_obs * self.include_history_steps]
+        self.obs_buf[:, : self.num_obs * (self.include_history_steps - 1)] = self.obs_buf[:,self.num_obs : self.num_obs * self.include_history_steps].clone()
 
         # Add new observation.
         self.obs_buf[:, -self.num_obs:] = new_obs
